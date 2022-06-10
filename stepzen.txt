@@ -1,0 +1,5 @@
+stepzen login
+cd stepzen (create stepzen folder in project root if not already created)
+stepzen init
+stepzen import postgresql
+stepzen start
