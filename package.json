@@ -12,12 +12,14 @@
     "@apollo/client": "^3.6.6",
     "@heroicons/react": "^1.0.6",
     "graphql": "^16.5.0",
+    "javascript-time-ago": "^2.5.4",
     "next": "12.1.6",
     "next-auth": "^4.3.4",
     "react": "18.1.0",
     "react-dom": "18.1.0",
     "react-hook-form": "^7.32.0",
-    "react-hot-toast": "^2.2.0"
+    "react-hot-toast": "^2.2.0",
+    "react-time-ago": "^7.2.1"
   },
   "devDependencies": {
     "@types/node": "17.0.41",

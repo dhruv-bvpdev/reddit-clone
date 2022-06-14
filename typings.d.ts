@@ -1,5 +1,5 @@
 type Comments = {
-  created_at: string
+  created_at: Date
   id: number
   post_id: number
   text: string
@@ -7,7 +7,7 @@ type Comments = {
 }
 
 type Vote = {
-  created_at: string
+  created_at: Date
   id: number
   post_id: number
   upvote: boolean
@@ -15,14 +15,14 @@ type Vote = {
 }
 
 type Subreddit = {
-  created_at: string
+  created_at: Date
   id: number
   topic: string
 }
 
 type Post = {
   body: string
-  created_at: string
+  created_at: Date
   id: number
   image: string
   subreddit_id: number
