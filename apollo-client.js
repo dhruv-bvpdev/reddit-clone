@@ -1,7 +1,7 @@
 import { ApolloClient, InMemoryCache } from '@apollo/client'
 
 const client = new ApolloClient({
-  url: process.env.STEPZEN_API_URL,
+  uri: 'https://dour.stepzen.net/api/early-wombat/__graphql',
   headers: {
     Authorization: `Apikey ${process.env.NEXT_PUBLIC_STEPZEN_KEY}`
   },
