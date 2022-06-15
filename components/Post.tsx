@@ -12,6 +12,7 @@ import ReactTimeAgo from 'react-time-ago'
 import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en.json'
 import Avatar from './Avatar'
+import Loader from './Loader'
 
 TimeAgo.addDefaultLocale(en)
 
@@ -20,6 +21,8 @@ type Props = {
 }
 
 function Post({ post }: Props) {
+  if (!post) return <Loader />
+
   return (
     <Link href={`/post/${post.id}`}>
       <div className="flex cursor-pointer rounded-md border border-gray-300 bg-white shadow-sm hover:border hover:border-gray-600">

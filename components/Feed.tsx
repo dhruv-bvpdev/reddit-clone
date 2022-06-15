@@ -1,5 +1,6 @@
 import { useQuery } from '@apollo/client'
 import { GET_ALL_POSTS, GET_ALL_POSTS_BY_TOPIC } from '../graphql/queries'
+import Loader from './Loader'
 import Post from './Post'
 
 type Props = {
@@ -7,7 +8,7 @@ type Props = {
 }
 
 function Feed({ topic }: Props) {
-  const { data, error } = !topic
+  const { data } = !topic
     ? useQuery(GET_ALL_POSTS)
     : useQuery(GET_ALL_POSTS_BY_TOPIC, {
         variables: {
@@ -16,6 +17,8 @@ function Feed({ topic }: Props) {
       })
 
   const posts: Post[] = !topic ? data?.getPostList : data?.getPostListByTopic
+
+  if (!posts) return <Loader />
 
   return (
     <div className="mt-5 space-y-4">
