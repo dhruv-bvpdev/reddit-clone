@@ -49,7 +49,11 @@ function Post({ post }: Props) {
         </div>
 
         {/* Image */}
-        <img className="w-full" src={post.image} alt={post.title} />
+        <img
+          className="w-full"
+          src={post.image}
+          alt={!post.image ? '' : post.title}
+        />
 
         {/* Footer */}
         <div className="flex space-x-4 text-gray-400">
