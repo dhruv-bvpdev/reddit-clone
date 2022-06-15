@@ -25,7 +25,12 @@ function Header() {
     <div className="sticky top-0 flex items-center bg-white px-4 py-2 shadow-sm">
       <div className="relative h-10 w-20 flex-shrink-0 cursor-pointer">
         <Link href="/">
-          <Image objectFit="contain" src={RedditLogo} layout="fill" />
+          <Image
+            objectFit="contain"
+            src={RedditLogo}
+            layout="fill"
+            alt="reddit-logo"
+          />
         </Link>
       </div>
 

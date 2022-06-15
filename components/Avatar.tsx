@@ -19,6 +19,7 @@ function Avatar({ seed, large }: Props) {
         src={`https://avatars.dicebear.com/api/open-peeps/${
           seed || session?.user?.name || 'placeholder'
         }.svg`}
+        alt="Profile Avatar"
       />
     </div>
   )
