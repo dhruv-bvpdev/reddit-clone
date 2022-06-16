@@ -72,6 +72,7 @@ function PostPage() {
             placeholder={session ? `What are your thoughts` : `Please Sign In`}
           />
           <button
+            disabled={!session}
             type="submit"
             className="rounded-full bg-red-500 p-3 font-semibold text-white disabled:bg-gray-200"
           >
