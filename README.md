@@ -1,34 +1,48 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Reddit 2.0
 
-## Getting Started
+Reddit Clone  
+Built using Next.js, TailwindCSS, Stepzen, Supabase, PostgreSQL
 
-First, run the development server:
+![Home Page](/screenshots/home.png?raw=true)
+![Single Post Page](/screenshots/singlePost.png?raw=true)
+!Subreddit Page](/screenshots/subreddit.png?raw=true)
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+### Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1. Create new post
+2. Add comments to post
+3. Up/Down Vote Post
+4. GraphQL API
+5. Next-Auth Integration
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+### Note on Issues
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+For any bugs or errors in the project reach out to me on dhruv.gursahani@outlook.com
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### Usage
 
-## Learn More
+#### Install Dependencies
 
-To learn more about Next.js, take a look at the following resources:
+- cd reddit-clone
+- npm install
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+#### Run (localhost:3000)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- npm run dev
 
-## Deploy on Vercel
+#### Run Stepzen GraphQL Playground (localhost:5001)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- cd stepzen
+- stepzen start
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### NOTE:
+
+Refer stepzen.txt file to create your own stepzen graphql api
+
+### ENV Variables
+
+1. REDDIT_CLIENT_ID
+2. REDDIT_CLIENT_SECRET
+3. NEXTAUTH_URL
+4. NEXTAUTH_SECRET
+5. NEXT_PUBLIC_STEPZEN_KEY
