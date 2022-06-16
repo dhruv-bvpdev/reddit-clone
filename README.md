@@ -5,7 +5,7 @@ Built using Next.js, TailwindCSS, Stepzen, Supabase, PostgreSQL
 
 ![Home Page](/screenshots/home.png?raw=true)
 ![Single Post Page](/screenshots/singlePost.png?raw=true)
-!Subreddit Page](/screenshots/subreddit.png?raw=true)
+![Subreddit Page](/screenshots/subreddit.png?raw=true)
 
 ### Features
 
