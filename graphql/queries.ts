@@ -99,6 +99,18 @@ export const GET_POST_BY_POST_ID = gql`
   }
 `
 
+export const GET_VOTES_BY_POST_ID = gql`
+  query MyQuery($id: ID!) {
+    getVoteUsingPost_id(id: $id) {
+      created_at
+      id
+      post_id
+      upvote
+      username
+    }
+  }
+`
+
 export const GET_SUBREDDIT_BY_TOPIC = gql`
   query MyQuery($topic: String!) {
     getSubredditListByTopic(topic: $topic) {

@@ -13,6 +13,12 @@ import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en.json'
 import Avatar from './Avatar'
 import Loader from './Loader'
+import { useSession } from 'next-auth/react'
+import toast from 'react-hot-toast'
+import { useEffect, useState } from 'react'
+import { useMutation, useQuery } from '@apollo/client'
+import { GET_VOTES_BY_POST_ID } from '../graphql/queries'
+import { ADD_VOTE } from '../graphql/mutations'
 
 TimeAgo.addDefaultLocale(en)
 
@@ -21,6 +27,63 @@ type Props = {
 }
 
 function Post({ post }: Props) {
+  const [vote, setVote] = useState<boolean>()
+  const { data: session } = useSession()
+
+  const { data, loading } = useQuery(GET_VOTES_BY_POST_ID, {
+    variables: {
+      id: post?.id
+    }
+  })
+
+  const [addVote] = useMutation(ADD_VOTE, {
+    refetchQueries: [GET_VOTES_BY_POST_ID, 'getVoteUsingPost_id']
+  })
+
+  const upvote = async (isUpVote: boolean) => {
+    if (!session) {
+      toast('You need to be signed in to vote')
+      return
+    }
+
+    if (vote && isUpVote) return
+    if (vote == false && !isUpVote) return
+
+    console.log('Voting...', isUpVote)
+
+    await addVote({
+      variables: {
+        post_id: post.id,
+        username: session?.user?.name,
+        upvote: isUpVote
+      }
+    })
+  }
+
+  useEffect(() => {
+    const votes: Vote[] = data?.getVoteUsingPost_id
+    const vote = votes?.find(
+      vote => vote.username == session?.user?.name
+    )?.upvote
+
+    setVote(vote)
+  }, [data])
+
+  const displayVotes = (data: any) => {
+    const votes: Vote[] = data?.getVoteUsingPost_id
+    const displayNumber = votes?.reduce(
+      (total, vote) => (vote.upvote ? (total += 1) : (total -= 1)),
+      0
+    )
+
+    if (votes?.length === 0) return 0
+    if (displayNumber === 0) {
+      return votes[0]?.upvote ? 1 : -1
+    }
+
+    return displayNumber
+  }
+
   if (!post) return <Loader />
 
   return (
@@ -28,9 +91,19 @@ function Post({ post }: Props) {
       <div className="flex cursor-pointer rounded-md border border-gray-300 bg-white shadow-sm hover:border hover:border-gray-600">
         {/* Votes */}
         <div className="flex flex-col items-center justify-start space-y-1 rounded-l-md bg-gray-50 p-4 text-gray-400">
-          <ArrowUpIcon className="voteButtons hover:text-red-400" />
-          <p className="text-black text-xs font-bold">0</p>
-          <ArrowDownIcon className="voteButtons hover:text-blue-400" />
+          <ArrowUpIcon
+            onClick={() => upvote(true)}
+            className={`voteButtons hover:text-red-400 ${
+              vote && 'text-red-400'
+            }`}
+          />
+          <p className="text-black text-xs font-bold">{displayVotes(data)}</p>
+          <ArrowDownIcon
+            onClick={() => upvote(false)}
+            className={`voteButtons hover:text-blue-400 ${
+              vote == false && 'text-blue-400'
+            }`}
+          />
         </div>
 
         <div className="p-3 pb-1">

@@ -114,6 +114,7 @@ type Query {
       SELECT T."created_at", T."id", T."post_id", T."upvote", T."username"
         FROM "public"."vote" T
         WHERE T."post_id" = $1
+        ORDER BY "created_at" desc
       """
       configuration: "postgresql_config"
     )
@@ -237,12 +238,7 @@ type Mutation {
       dml: DELETE
       configuration: "postgresql_config"
     )
-  insertVote(
-    post_id: ID!
-    created_at: DateTime!
-    upvote: Boolean!
-    username: String!
-  ): Vote
+  insertVote(post_id: ID!, upvote: Boolean!, username: String!): Vote
     @dbquery(
       type: "postgresql"
       schema: "public"
