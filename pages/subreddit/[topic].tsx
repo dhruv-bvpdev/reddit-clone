@@ -8,14 +8,14 @@ function Subreddit() {
     query: { topic }
   } = useRouter()
   return (
-    <div className="h-24 bg-red-400 p-8">
-      <div className="-mx-8 mt-10 bg-white">
-        <div className="mx-auto flex max-w-5xl items-center space-x-4 pb-3">
+    <div className="h-24 bg-red-400 p-1 md:p-8">
+      <div className="-mx-1 md:-mx-8 mt-10 bg-white">
+        <div className="mx-auto flex max-w-5xl items-center space-x-1 md:space-x-4 pb-3">
           <div className="-mt-5">
             <Avatar seed={topic as string} large />
           </div>
           <div className="py-2">
-            <h1 className="text-3xl font-semibold">
+            <h1 className="text-xl md:text-3xl font-semibold">
               Welcome to the r/{topic} subreddit
             </h1>
             <p className="text-sm text-gray-400">r/{topic}</p>
@@ -23,7 +23,7 @@ function Subreddit() {
         </div>
       </div>
 
-      <div className="mx-auto max-w-5xl mt-8 pb-10">
+      <div className="max-w-5xl mx-auto mt-8 pb-10">
         <PostBox subreddit={topic as string} />
         <Feed topic={topic as string} />
       </div>

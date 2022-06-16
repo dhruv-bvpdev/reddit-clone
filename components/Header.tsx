@@ -34,7 +34,7 @@ function Header() {
         </Link>
       </div>
 
-      <div className="flex items-center mx-7 xl:min-w-[300px]">
+      <div className="hidden md:flex items-center mx-7 xl:min-w-[300px]">
         <HomeIcon className="h-5 w-5" />
         <p className="flex-1 hidden ml-2 lg:inline">Home</p>
         <ChevronDownIcon className="h-5 w-5" />

@@ -67,7 +67,7 @@ function Post({ post }: Props) {
     )?.upvote
 
     setVote(vote)
-  }, [data])
+  }, [data, session?.user?.name])
 
   const displayVotes = (data: any) => {
     const votes: Vote[] = data?.getVoteUsingPost_id
@@ -90,7 +90,7 @@ function Post({ post }: Props) {
     <Link href={`/post/${post.id}`}>
       <div className="flex cursor-pointer rounded-md border border-gray-300 bg-white shadow-sm hover:border hover:border-gray-600">
         {/* Votes */}
-        <div className="flex flex-col items-center justify-start space-y-1 rounded-l-md bg-gray-50 p-4 text-gray-400">
+        <div className="hidden md:flex flex-col items-center justify-start space-y-1 rounded-l-md bg-gray-50 p-4 text-gray-400">
           <ArrowUpIcon
             onClick={() => upvote(true)}
             className={`voteButtons hover:text-red-400 ${
@@ -117,7 +117,7 @@ function Post({ post }: Props) {
                 </span>
               </Link>{' '}
               &#x000B7; Posted by u/
-              {post.username}{' '}
+              {post.username} <br className="md:hidden" />
               <ReactTimeAgo date={post.created_at} locale="en-IN" />
             </p>
           </div>
@@ -136,10 +136,12 @@ function Post({ post }: Props) {
           />
 
           {/* Footer */}
-          <div className="flex space-x-4 text-gray-400">
+          <div className="flex space-x-3 md:space-x-4 text-gray-400">
             <div className="postButtons">
               <ChatAltIcon className="w-6 h-6" />
-              <p className="">{post.comments.length} Comments</p>
+              <p className="hidden sm:inline">
+                {post.comments.length} Comments
+              </p>
             </div>
 
             <div className="postButtons">
@@ -155,6 +157,17 @@ function Post({ post }: Props) {
             <div className="postButtons">
               <BookmarkIcon className="w-6 h-6" />
               <p className="hidden sm:inline">Save</p>
+            </div>
+
+            <div className="postButtons md:hidden">
+              <ArrowUpIcon onClick={() => upvote(true)} className="w-6 h-6" />
+            </div>
+
+            <div className="postButtons md:hidden">
+              <ArrowDownIcon
+                onClick={() => upvote(false)}
+                className="w-6 h-6"
+              />
             </div>
 
             <div className="postButtons">
